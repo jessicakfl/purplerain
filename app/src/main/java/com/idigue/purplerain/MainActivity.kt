@@ -3,6 +3,8 @@ package com.idigue.purplerain
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -20,17 +22,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PurplerainTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
-                    Button(
-                        onClick = {postuser()},
-                        modifier = Modifier.padding(top = 10.dp)
+                    Row(
+                        horizontalArrangement = Arrangement.Start,
+                        modifier = Modifier.padding(16.dp)
                     ) {
-                        Text("postuser")
+                        Button(
+                            onClick = { postuser() },
+                            modifier = Modifier.padding(top = 10.dp)
+                        ) {
+                            Text("postuser")
+                        }
                     }
                 }
             }
@@ -39,25 +44,18 @@ class MainActivity : ComponentActivity() {
 
     private fun postuser() {
         val userapi = user(
-            0,"userapi"
+            0, "userapi"
         )
         val httpservice = httpservice()
         println(httpservice.okpostuser(userapi))
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     PurplerainTheme {
-        Greeting("Android")
+        //Greeting("Android")
     }
 }
